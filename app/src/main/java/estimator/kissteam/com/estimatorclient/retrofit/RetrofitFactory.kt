@@ -14,11 +14,16 @@ import java.util.concurrent.TimeUnit
  * Created by: anna
  * Date: 3/16/18.
  */
-class RetrofitFactory constructor(private val baseUrl: String) {
+class RetrofitFactory constructor(private val baseUrl: String = "") {
 
     companion object {
         private const val MAX_REQUESTS_PER_HOST = 5
         private const val CONNECT_TIMEOUT = 20L
+
+        inline fun <reified Service> createService() : Service =
+                RetrofitFactory()
+                        .create()
+                        .create(Service::class.java)
     }
 
     fun create(tokenProvider: AccessTokenProvider = AccessTokenProviderImpl()): Retrofit {

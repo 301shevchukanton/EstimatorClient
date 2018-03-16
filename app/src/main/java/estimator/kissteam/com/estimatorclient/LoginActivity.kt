@@ -16,8 +16,9 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        findViewById<Button>(R.id.button).setOnClickListener({
+        findViewById<Button>(R.id.btnLogin).setOnClickListener({
 
+            //TODO: Extract to ViewModel
             GetAccessTokenGateway(
                     (findViewById<EditText>(R.id.etName)).text.toString(),
                     (findViewById<EditText>(R.id.etPass)).text.toString()
@@ -55,10 +56,18 @@ class LoginActivity : AppCompatActivity() {
 //
 //                    }, { showToast("Error during authorization") })
         })
+
+        findViewById<Button>(R.id.btnRegister).setOnClickListener({
+            openRegisterActivity()
+        })
     }
 
     private fun openRoomsActivity() {
-        LoginActivity@ this.startActivity(RoomsActivity.createIntent(LoginActivity@ this))
+        startActivity(RoomsActivity.createIntent(this))
+    }
+
+    private fun openRegisterActivity() {
+        startActivity(RegisterActivity.createIntent(this))
     }
 
     private fun showToast(message: String) {

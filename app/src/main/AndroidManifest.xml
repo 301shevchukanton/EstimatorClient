@@ -22,6 +22,8 @@
         </activity>
         <activity android:name=".CreateRoomActivity">
         </activity>
+        <activity android:name=".RoomsActivity">
+        </activity>
     </application>
 
 </manifest>

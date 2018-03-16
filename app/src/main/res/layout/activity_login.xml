@@ -30,7 +30,8 @@
         android:layout_marginTop="76dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:hint="Name"/>
+        android:hint="Name"
+        android:text="alk@qapint.com"/>
 
     <EditText
         android:id="@+id/etPass"
@@ -41,6 +42,7 @@
         android:layout_marginBottom="26dp"
         android:ems="10"
         android:hint="password"
+        android:text="111111"
         android:inputType="textPassword"/>
 
 </RelativeLayout>

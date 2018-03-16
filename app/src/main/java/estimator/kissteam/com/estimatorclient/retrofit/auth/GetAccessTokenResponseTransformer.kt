@@ -1,8 +1,8 @@
 package estimator.kissteam.com.estimatorclient.retrofit.auth
 
-import estimator.kissteam.com.estimatorclient.retrofit.NormalizationStrategy
-import estimator.kissteam.com.estimatorclient.retrofit.NormalizationStrategyImpl
-import estimator.kissteam.com.estimatorclient.retrofit.ResponseTransformer
+import estimator.kissteam.com.estimatorclient.retrofit.transformation.NormalizationStrategy
+import estimator.kissteam.com.estimatorclient.retrofit.transformation.NormalizationStrategyImpl
+import estimator.kissteam.com.estimatorclient.retrofit.transformation.ResponseTransformer
 import estimator.kissteam.com.estimatorclient.retrofit.TokenEntity
 
 /**

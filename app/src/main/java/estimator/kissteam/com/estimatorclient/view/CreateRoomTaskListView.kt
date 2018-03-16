@@ -11,10 +11,8 @@ import android.view.LayoutInflater
 import android.view.View.OnClickListener
 import android.widget.LinearLayout
 import android.widget.TextView
-import android.widget.Toast
 import estimator.kissteam.com.estimatorclient.R
-import estimator.kissteam.com.estimatorclient.dal.entities.Issue
-import estimator.kissteam.com.estimatorclient.dal.services.request_entities.IssueInformation
+import estimator.kissteam.com.estimatorclient.dal.services.request_entity.IssueInformation
 import estimator.kissteam.com.estimatorclient.view.recycler.MyAdapter
 
 /**

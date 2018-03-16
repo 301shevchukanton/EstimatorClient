@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit
  * Created by: anna
  * Date: 3/16/18.
  */
-class RetrofitFactory constructor(private val baseUrl: String = "") {
+class RetrofitFactory constructor(private val baseUrl: String = "http://159.89.7.3") {
 
     companion object {
         private const val MAX_REQUESTS_PER_HOST = 5

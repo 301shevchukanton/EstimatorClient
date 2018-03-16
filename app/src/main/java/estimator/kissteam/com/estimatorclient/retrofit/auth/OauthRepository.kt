@@ -17,4 +17,9 @@ class OauthRepository {
 
     fun getAccessToken() = preference.getString("preference_access_token", "")
 
+    fun saveAccessToken(token: String?) {
+        if (token != null) {
+            preference.edit().putString("preference_access_token", token)
+        }
+    }
 }

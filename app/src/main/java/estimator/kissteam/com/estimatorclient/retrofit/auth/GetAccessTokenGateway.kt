@@ -2,6 +2,8 @@ package estimator.kissteam.com.estimatorclient.retrofit.auth
 
 import estimator.kissteam.com.estimatorclient.retrofit.*
 import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import java.io.IOException
 
 /**
@@ -11,34 +13,35 @@ import java.io.IOException
 class GetAccessTokenGateway constructor(
         private val user: String,
         private val password: String,
-        private val baseUrl: String = "http://159.89.7.3",
         private val responseTransformer: ResponseTransformer<GetAccessTokenResponse, TokenEntity> = GetAccessTokenResponseTransformer())
     : Gateway<TokenEntity> {
 
-    override fun execute(): GatewayResult<TokenEntity> {
-        return createRequest()
-                .map { GatewayResult(responseTransformer.transform(it)) }
-                .onErrorReturn { error ->
-                    GatewayResult(IOException(error))
-                }
-                .blockingFirst()
-    }
-
-//    override fun executeAsync(domainGatewayHandler: DomainGatewayHandler<TokenEntity>) {
-//        createRequest()
-//                .map { response -> responseTransformer.transform(response) }
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(
-//                        { entity -> domainGatewayHandler.handleDomainGatewayResult(DomainGatewayResult(entity)) },
-//                        { error ->
-//                            domainGatewayHandler.handleDomainGatewayResult(
-//                                    DomainGatewayResult<TokenEntity>(IOException(error.message)))
-//                        })
+//    override fun execute(): GatewayResult<TokenEntity> {
+//        return createRequest()
+//                .map { GatewayResult(responseTransformer.transform(it)) }
+//                .onErrorReturn { error ->
+//                    GatewayResult(IOException(error))
+//                }
+//                .blockingFirst()
 //    }
 
+    override fun executeAsync(gatewayHandler: GatewayHandler<TokenEntity>) {
+        createRequest()
+                .map { response -> responseTransformer.transform(response) }
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        { entity ->
+                            gatewayHandler.handleResult(GatewayResult(entity))
+                        },
+                        { error ->
+                            gatewayHandler.handleResult(
+                                    GatewayResult<TokenEntity>(IOException(error.message)))
+                        })
+    }
+
     private fun createRequest(): Observable<GetAccessTokenResponse> =
-            RetrofitFactory(baseUrl)
+            RetrofitFactory()
                     .createForAuth()
                     .create(GetAccessTokenService::class.java)
                     .oauthToken(createRequestParameters())

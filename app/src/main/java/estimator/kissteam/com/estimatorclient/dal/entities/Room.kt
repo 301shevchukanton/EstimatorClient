@@ -6,7 +6,7 @@ package estimator.kissteam.com.estimatorclient.dal.entities
  */
 //TODO need some clarifications, change strategy and crateo from string to Object
 class Room(
-		val id: String,
-		val title: String,
-		val strategy: String,
-		val creator: String)
+		val id: String?,
+		val title: String?,
+		val strategy: String?,
+		val creator: String?)

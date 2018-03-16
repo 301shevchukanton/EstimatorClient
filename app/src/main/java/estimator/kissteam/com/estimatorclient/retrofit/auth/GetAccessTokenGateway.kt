@@ -9,6 +9,8 @@ import java.io.IOException
  * Date: 3/16/18.
  */
 class GetAccessTokenGateway constructor(
+        private val user: String,
+        private val password: String,
         private val baseUrl: String = "http://159.89.7.3",
         private val responseTransformer: ResponseTransformer<GetAccessTokenResponse, TokenEntity> = GetAccessTokenResponseTransformer())
     : Gateway<TokenEntity> {
@@ -46,7 +48,7 @@ class GetAccessTokenGateway constructor(
                 put("grant_type", "password")
                 put("client_id", "2")
                 put("client_secret", "Vm5zJt1czIbAXQfwnwNY6kJIyl2f7HDHPq66iQCR")
-                put("username", "alk@qapint.com")
-                put("password", "111111")
+                put("username", user)
+                put("password", password)
             }
 }

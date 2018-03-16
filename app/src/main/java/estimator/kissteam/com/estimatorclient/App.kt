@@ -1,6 +1,7 @@
 package estimator.kissteam.com.estimatorclient
 
 import android.app.Application
+import com.github.salomonbrys.kodein.Kodein
 
 /**
  * Created by: anna
@@ -8,13 +9,18 @@ import android.app.Application
  */
 class App : Application() {
 
-    companion object {
-        lateinit var INSTANCE: App
-            private set
-    }
+	companion object {
+		lateinit var INSTANCE: App
+			private set
 
-    override fun onCreate() {
-        super.onCreate()
-        INSTANCE = this
-    }
+		lateinit var KODEIN: Kodein
+			private set
+	}
+
+	override fun onCreate() {
+		super.onCreate()
+		INSTANCE = this
+
+		KODEIN = KodeinFactory().create(this)
+	}
 }

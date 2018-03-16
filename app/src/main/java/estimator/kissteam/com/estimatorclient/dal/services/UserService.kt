@@ -1,6 +1,6 @@
 package estimator.kissteam.com.estimatorclient.dal.services
 
-import estimator.kissteam.com.estimatorclient.dal.entity_responses.UserResponse
+import estimator.kissteam.com.estimatorclient.dal.entities.User
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -14,12 +14,11 @@ interface UserService {
 
 	@POST("/users")
 	fun createUser(@Query("username") username: String,
-				   @Query("password") password: String): Observable<UserResponse>
+				   @Query("password") password: String): Observable<User>
 
 	@GET("/users")
-	fun getUsers(): Observable<List<UserResponse>>
+	fun getUsers(): Observable<List<User>>
 
-	//TODO question
 	@GET("/user")
-	fun getUser(): Observable<UserResponse>
+	fun getUser(): Observable<User>
 }

@@ -1,9 +1,9 @@
-package estimator.kissteam.com.estimatorclient.dal.entity_responses
+package estimator.kissteam.com.estimatorclient.dal.entities
 
 
 /**
  * Created by Dima Muravyov on 16.03.2018.
  */
-class UserResponse(
+class User(
 		val id: String,
 		val username: String)

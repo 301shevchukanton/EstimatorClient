@@ -10,11 +10,11 @@ import io.reactivex.Observable
 /**
  * Created by Dima Muravyov on 17.03.2018.
  */
-class CreateUserGateway(private val username: String,
+class CreateUserGateway(private val email: String,
 						private val password: String) {
 
 	fun execute(): Observable<User> =
 			RetrofitFactory
 					.createService<UsersService>()
-					.createUser(NewUserInfo(username, password))
+					.createUser(NewUserInfo(email, password))
 }

@@ -6,4 +6,6 @@ package estimator.kissteam.com.estimatorclient.dal.entities
  */
 class User(
 		val id: String?,
-		val username: String?)
+		val email: String?,
+		val created_at: String?,
+		val updated_at: String?)

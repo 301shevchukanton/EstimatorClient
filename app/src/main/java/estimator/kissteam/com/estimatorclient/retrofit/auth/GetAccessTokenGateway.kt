@@ -51,7 +51,7 @@ class GetAccessTokenGateway constructor(
                 put("grant_type", "password")
                 put("client_id", "2")
                 put("client_secret", "Vm5zJt1czIbAXQfwnwNY6kJIyl2f7HDHPq66iQCR")
-                put("username", user)
+                put("email", user)
                 put("password", password)
             }
 }

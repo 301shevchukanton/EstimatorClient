@@ -9,7 +9,8 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"/>
+        android:text="Hello World!"
+        android:id="@+id/textView"/>
 
     <Button
         android:id="@+id/button"
@@ -19,5 +20,27 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="220dp"
         android:text="Button"/>
+
+    <EditText
+        android:id="@+id/etName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="76dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Name"/>
+
+    <EditText
+        android:id="@+id/etPass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/button"
+        android:layout_alignEnd="@+id/etName"
+        android:layout_marginBottom="26dp"
+        android:ems="10"
+        android:hint="password"
+        android:inputType="textPassword"/>
 
 </RelativeLayout>

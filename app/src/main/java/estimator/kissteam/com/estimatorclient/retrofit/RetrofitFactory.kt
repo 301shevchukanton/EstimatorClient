@@ -1,5 +1,7 @@
 package estimator.kissteam.com.estimatorclient.retrofit
 
+import estimator.kissteam.com.estimatorclient.retrofit.auth.AccessTokenProvider
+import estimator.kissteam.com.estimatorclient.retrofit.auth.AccessTokenProviderImpl
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -12,7 +14,7 @@ import java.util.concurrent.TimeUnit
  * Created by: anna
  * Date: 3/16/18.
  */
-class RetrofitFactory @JvmOverloads constructor(private val baseUrl: String = "http://159.89.7.3/") {
+class RetrofitFactory constructor(private val baseUrl: String) {
 
     companion object {
         private const val MAX_REQUESTS_PER_HOST = 5
@@ -51,7 +53,7 @@ class RetrofitFactory @JvmOverloads constructor(private val baseUrl: String = "h
                 .build()
 
         return Retrofit.Builder()
-                .baseUrl("${this.baseUrl}/")
+                .baseUrl(baseUrl)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)

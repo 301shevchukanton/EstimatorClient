@@ -1,4 +1,4 @@
-package estimator.kissteam.com.estimatorclient.retrofit
+package estimator.kissteam.com.estimatorclient.retrofit.auth
 
 /**
  * Created by: anna

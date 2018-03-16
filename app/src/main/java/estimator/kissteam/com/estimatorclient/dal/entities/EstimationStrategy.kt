@@ -1,4 +1,4 @@
-package estimator.kissteam.com.estimatorclient.dal.entity
+package estimator.kissteam.com.estimatorclient.dal.entities
 
 /**
  * Created by AntonShevchuk on 16.03.2018.

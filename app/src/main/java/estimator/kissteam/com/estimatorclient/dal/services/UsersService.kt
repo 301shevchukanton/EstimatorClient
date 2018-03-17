@@ -1,7 +1,7 @@
 package estimator.kissteam.com.estimatorclient.dal.services
 
 import estimator.kissteam.com.estimatorclient.dal.entities.User
-import estimator.kissteam.com.estimatorclient.dal.services.request_entity.NewUserInfo
+import estimator.kissteam.com.estimatorclient.dal.services.request_bundle.NewUserInfoRequestBundle
 import io.reactivex.Observable
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -14,7 +14,7 @@ import retrofit2.http.POST
 interface UsersService {
 
 	@POST("users")
-	fun createUser(@Body newUserInfo: NewUserInfo): Observable<User>
+	fun createUser(@Body newUserInfoRequestBundle: NewUserInfoRequestBundle): Observable<User>
 
 	@GET("users")
 	fun getUsers(): Observable<List<User>>

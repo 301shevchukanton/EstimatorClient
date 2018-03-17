@@ -1,7 +1,7 @@
 package estimator.kissteam.com.estimatorclient.dal.services
 
 import estimator.kissteam.com.estimatorclient.dal.entities.Issue
-import estimator.kissteam.com.estimatorclient.dal.services.request_entity.IssueInformation
+import estimator.kissteam.com.estimatorclient.dal.services.request_bundle.IssueInformationRequestBundle
 import io.reactivex.Completable
 import io.reactivex.Observable
 import retrofit2.http.*
@@ -14,7 +14,7 @@ interface IssueService {
 
 	@POST("room/{roomId}/issues")
 	fun createIssue(@Path("roomId") roomId: String,
-					@Body issueInformation: IssueInformation): Observable<Issue>
+					@Body issueInformationRequestBundle: IssueInformationRequestBundle): Observable<Issue>
 
 	@GET("room/{roomId}/issues")
 	fun getIssues(@Path("roomId") roomId: String): Observable<List<Issue>>
@@ -27,7 +27,7 @@ interface IssueService {
 	@PUT("room/{roomId}/issues/{issueId}")
 	fun updateIssue(@Path("roomId") roomId: String,
 					@Path("issueId") issueId: String,
-					@Body issueInformation: IssueInformation): Observable<Issue>
+					@Body issueInformationRequestBundle: IssueInformationRequestBundle): Observable<Issue>
 
 	@DELETE("room/{roomId}/issues/{issueId}")
 	fun deleteIssue(@Path("roomId") roomId: String,

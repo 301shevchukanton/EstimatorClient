@@ -8,7 +8,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import estimator.kissteam.com.estimatorclient.R;
-import estimator.kissteam.com.estimatorclient.dal.services.request_entity.IssueInformation;
+import estimator.kissteam.com.estimatorclient.dal.services.request_bundle.IssueInformationRequestBundle;
 
 /**
  * Created by AntonShevchuk on 16.03.2018.
@@ -47,7 +47,7 @@ public class TaskItemView extends LinearLayout {
 		return taskDescriptionText.getText().toString();
 	}
 
-	public void setIssue(IssueInformation issue) {
+	public void setIssue(IssueInformationRequestBundle issue) {
 		this.taskNameText.setText(issue.getTitle());
 		this.taskDescriptionText.setText(issue.getDescription());
 	}

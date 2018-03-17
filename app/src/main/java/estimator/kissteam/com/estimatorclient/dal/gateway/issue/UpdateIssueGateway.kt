@@ -2,7 +2,7 @@ package estimator.kissteam.com.estimatorclient.dal.gateway.issue
 
 import estimator.kissteam.com.estimatorclient.dal.entities.Issue
 import estimator.kissteam.com.estimatorclient.dal.services.IssueService
-import estimator.kissteam.com.estimatorclient.dal.services.request_entity.IssueInformation
+import estimator.kissteam.com.estimatorclient.dal.services.request_bundle.IssueInformationRequestBundle
 import estimator.kissteam.com.estimatorclient.retrofit.RetrofitFactory
 import io.reactivex.Observable
 
@@ -17,5 +17,5 @@ class UpdateIssueGateway(private val roomId: String,
 	fun execute(): Observable<Issue> =
 			RetrofitFactory
 					.createService<IssueService>()
-					.updateIssue(roomId, issueId, IssueInformation(title, description))
+					.updateIssue(roomId, issueId, IssueInformationRequestBundle(title, description))
 }

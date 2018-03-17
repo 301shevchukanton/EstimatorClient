@@ -2,6 +2,7 @@ package estimator.kissteam.com.estimatorclient.view
 
 import android.arch.lifecycle.MutableLiveData
 import android.content.Context
+import android.graphics.Typeface
 import android.util.AttributeSet
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -41,15 +42,17 @@ class DeckItemView @JvmOverloads constructor(context: Context, attrs: AttributeS
 		cardView.text = it.toString()
 		cardView.id = it
 		cardView.tag = it
-		cardView.textSize = 20F
+		cardView.textSize = 26F
 		cardView.gravity = Gravity.CENTER
 		val params = LayoutParams(0,
 				MATCH_PARENT,
 				1f)
 
-		params.setMargins(10, 10, 10, 10)
-		cardView.setBackgroundColor(resources.getColor(android.R.color.holo_green_dark))
+		params.setMargins(0, 10, 0, 10)
+		//cardView.setBackgroundColor(resources.getColor(android.R.color.holo_green_dark))
+		cardView.setBackgroundResource(R.drawable.ic_card)
 		cardView.layoutParams = params
+		cardView.setTypeface(null, Typeface.BOLD)
 		cardView.setTag("")
 		cardView.setOnClickListener {
 			onItemClick.value = java.lang.Float.parseFloat((cardView.text.toString()))

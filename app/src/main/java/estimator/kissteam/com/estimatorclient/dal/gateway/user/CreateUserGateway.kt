@@ -15,6 +15,6 @@ class CreateUserGateway(private val email: String,
 
 	fun execute(): Observable<User> =
 			RetrofitFactory
-					.createService<UsersService>()
+					.createServiceForAuth<UsersService>()
 					.createUser(NewUserInfoRequestBundle(email, password))
 }

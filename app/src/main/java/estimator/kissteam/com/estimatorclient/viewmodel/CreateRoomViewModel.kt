@@ -14,5 +14,6 @@ class CreateRoomViewModel : ViewModel() {
 		}
 
 	fun createRoom() {
+		//TODO implement call to gateways
 	}
 }

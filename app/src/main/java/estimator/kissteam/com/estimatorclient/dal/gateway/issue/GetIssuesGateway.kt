@@ -2,6 +2,7 @@ package estimator.kissteam.com.estimatorclient.dal.gateway.issue
 
 import estimator.kissteam.com.estimatorclient.dal.entities.Issue
 import estimator.kissteam.com.estimatorclient.dal.services.IssueService
+import estimator.kissteam.com.estimatorclient.dal.services.response_transformer.IssueResponseTransformer
 import estimator.kissteam.com.estimatorclient.retrofit.RetrofitFactory
 import io.reactivex.Observable
 
@@ -14,4 +15,8 @@ class GetIssuesGateway(private val roomId: String) {
 			RetrofitFactory
 					.createService<IssueService>()
 					.getIssues(roomId)
+					.map { entities ->
+						entities
+								.map { entity -> IssueResponseTransformer().transform(entity) }
+					}
 }

@@ -3,6 +3,7 @@ package estimator.kissteam.com.estimatorclient.dal.gateway.room_users
 import estimator.kissteam.com.estimatorclient.dal.entities.User
 import estimator.kissteam.com.estimatorclient.dal.services.RoomUsersService
 import estimator.kissteam.com.estimatorclient.dal.services.request_bundle.RoomUserRequestBundle
+import estimator.kissteam.com.estimatorclient.dal.services.response_transformer.UserResponseTransformer
 import estimator.kissteam.com.estimatorclient.retrofit.RetrofitFactory
 import io.reactivex.Observable
 
@@ -16,4 +17,7 @@ class DeleteUserFromRoomGateway(private val roomId: String,
 			RetrofitFactory
 					.createService<RoomUsersService>()
 					.deleteUserFromRoom(roomId, RoomUserRequestBundle(userId))
+					.map { entities ->
+						entities.map { UserResponseTransformer().transform(it) }
+					}
 }

@@ -3,6 +3,7 @@ package estimator.kissteam.com.estimatorclient.dal.gateway.room
 import estimator.kissteam.com.estimatorclient.dal.entities.Room
 import estimator.kissteam.com.estimatorclient.dal.services.RoomService
 import estimator.kissteam.com.estimatorclient.dal.services.request_bundle.UpdateRoomRequestBundle
+import estimator.kissteam.com.estimatorclient.dal.services.response_transformer.RoomResponseTransformer
 import estimator.kissteam.com.estimatorclient.retrofit.RetrofitFactory
 import io.reactivex.Observable
 
@@ -18,4 +19,5 @@ class UpdateRoomGateway(private val roomId: String,
 			RetrofitFactory
 					.createService<RoomService>()
 					.updateRoom(roomId, UpdateRoomRequestBundle(id, title, strategy))
+					.map { RoomResponseTransformer().transform(it) }
 }

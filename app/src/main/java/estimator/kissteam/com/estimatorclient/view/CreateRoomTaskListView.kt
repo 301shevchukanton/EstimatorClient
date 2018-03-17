@@ -12,7 +12,7 @@ import android.view.View.OnClickListener
 import android.widget.LinearLayout
 import android.widget.TextView
 import estimator.kissteam.com.estimatorclient.R
-import estimator.kissteam.com.estimatorclient.dal.services.request_bundle.IssueInformationRequestBundle
+import estimator.kissteam.com.estimatorclient.dal.services.request_bundle.IssueRequestBundle
 import estimator.kissteam.com.estimatorclient.view.recycler.MyAdapter
 
 /**
@@ -23,7 +23,7 @@ class CreateRoomTaskListView @JvmOverloads constructor(context: Context, attrs: 
 	private val recyclerView: RecyclerView
 	private val recyclerViewAdapter = MyAdapter(
 			mutableListOf(
-					IssueInformationRequestBundle(
+					IssueRequestBundle(
 							"my task title",
 							"my task's description")))
 	private val recyclerViewLayoutManager: RecyclerView.LayoutManager
@@ -38,7 +38,7 @@ class CreateRoomTaskListView @JvmOverloads constructor(context: Context, attrs: 
 
 		addTaskDialogView.liveData
 				.observe(context as LifecycleOwner, Observer {
-					recyclerViewAdapter.addTask(IssueInformationRequestBundle(
+					recyclerViewAdapter.addTask(IssueRequestBundle(
 							it?.first,
 							it?.second))
 					dialog.cancel()

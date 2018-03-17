@@ -1,6 +1,6 @@
 package estimator.kissteam.com.estimatorclient.dal.services
 
-import estimator.kissteam.com.estimatorclient.dal.entities.Strategy
+import estimator.kissteam.com.estimatorclient.dal.services.request_response.StrategyResponse
 import io.reactivex.Observable
 import retrofit2.http.GET
 
@@ -11,5 +11,5 @@ import retrofit2.http.GET
 interface StrategyService {
 
 	@GET("strategies")
-	fun getStrategies(): Observable<List<Strategy>>
+	fun getStrategies(): Observable<List<StrategyResponse>>
 }

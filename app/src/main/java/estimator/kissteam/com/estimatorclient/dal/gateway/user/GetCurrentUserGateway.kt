@@ -2,6 +2,7 @@ package estimator.kissteam.com.estimatorclient.dal.gateway.user
 
 import estimator.kissteam.com.estimatorclient.dal.entities.User
 import estimator.kissteam.com.estimatorclient.dal.services.UsersService
+import estimator.kissteam.com.estimatorclient.dal.services.response_transformer.UserResponseTransformer
 import estimator.kissteam.com.estimatorclient.retrofit.RetrofitFactory
 import io.reactivex.Observable
 
@@ -14,4 +15,5 @@ class GetCurrentUserGateway {
 			RetrofitFactory
 					.createService<UsersService>()
 					.getUser()
+					.map { UserResponseTransformer().transform(it) }
 }

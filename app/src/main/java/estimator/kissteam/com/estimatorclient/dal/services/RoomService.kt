@@ -1,8 +1,8 @@
 package estimator.kissteam.com.estimatorclient.dal.services
 
-import estimator.kissteam.com.estimatorclient.dal.entities.Room
-import estimator.kissteam.com.estimatorclient.dal.services.request_bundle.RoomInfoRequestBundle
+import estimator.kissteam.com.estimatorclient.dal.services.request_bundle.RoomRequestBundle
 import estimator.kissteam.com.estimatorclient.dal.services.request_bundle.UpdateRoomRequestBundle
+import estimator.kissteam.com.estimatorclient.dal.services.request_response.RoomResponse
 import io.reactivex.Completable
 import io.reactivex.Observable
 import retrofit2.http.*
@@ -14,17 +14,17 @@ import retrofit2.http.*
 interface RoomService {
 
 	@POST("rooms")
-	fun createRoom(@Body roomInfoRequestBundle: RoomInfoRequestBundle): Observable<Room>
+	fun createRoom(@Body roomRequestBundle: RoomRequestBundle): Observable<RoomResponse>
 
 	@GET("rooms")
-	fun getRooms(): Observable<List<Room>>
+	fun getRooms(): Observable<List<RoomResponse>>
 
 	@GET("rooms/{roomId}")
-	fun getRoom(@Path("roomId") roomId: String): Observable<Room>
+	fun getRoom(@Path("roomId") roomId: String): Observable<RoomResponse>
 
 	@PUT("rooms/{roomId}")
 	fun updateRoom(@Path("roomId") roomId: String,
-				   @Body updateRoomRequestBundle: UpdateRoomRequestBundle): Observable<Room>
+				   @Body updateRoomRequestBundle: UpdateRoomRequestBundle): Observable<RoomResponse>
 
 	@DELETE("rooms/{roomId}")
 	fun deleteRoom(@Path("roomId") roomId: String): Completable

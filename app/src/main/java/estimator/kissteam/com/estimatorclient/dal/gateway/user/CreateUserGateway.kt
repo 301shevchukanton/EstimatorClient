@@ -2,7 +2,8 @@ package estimator.kissteam.com.estimatorclient.dal.gateway.user
 
 import estimator.kissteam.com.estimatorclient.dal.entities.User
 import estimator.kissteam.com.estimatorclient.dal.services.UsersService
-import estimator.kissteam.com.estimatorclient.dal.services.request_bundle.NewUserInfoRequestBundle
+import estimator.kissteam.com.estimatorclient.dal.services.request_bundle.NewUserRequestBundle
+import estimator.kissteam.com.estimatorclient.dal.services.response_transformer.UserResponseTransformer
 import estimator.kissteam.com.estimatorclient.retrofit.RetrofitFactory
 import io.reactivex.Observable
 
@@ -16,5 +17,6 @@ class CreateUserGateway(private val email: String,
 	fun execute(): Observable<User> =
 			RetrofitFactory
 					.createServiceForAuth<UsersService>()
-					.createUser(NewUserInfoRequestBundle(email, password))
+					.createUser(NewUserRequestBundle(email, password))
+					.map { UserResponseTransformer().transform(it) }
 }

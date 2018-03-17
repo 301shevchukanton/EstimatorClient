@@ -23,7 +23,7 @@ class RoomsActivity : AppCompatActivity() {
 
 	private val viewModelClass = RoomsViewModel::class.java
 
-	private val recyclerViewAdapter = RoomsRecyclerViewAdapter(mutableListOf())
+	private val recyclerViewAdapter = RoomsRecyclerViewAdapter()
 
 	private fun getRoomsViewModel() = ViewModelProviders
 			.of(this)
@@ -50,8 +50,7 @@ class RoomsActivity : AppCompatActivity() {
 				.observe(this, Observer {
 					if (it != null) {
 						progressBar.visibility = View.GONE
-						this.recyclerViewAdapter.myDataset.clear()
-						this.recyclerViewAdapter.myDataset.addAll<Room>(it)
+						this.recyclerViewAdapter.setData(it)
 						this.recyclerViewAdapter.notifyDataSetChanged()
 					} else {
 						progressBar.visibility = View.VISIBLE

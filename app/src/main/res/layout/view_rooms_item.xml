@@ -1,28 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:card_view="http://schemas.android.com/apk/res-auto"
-              android:layout_width="match_parent"
-              android:layout_height="100dp"
-              android:layout_marginTop="15dp"
-              android:background="@android:color/transparent">
+<android.support.v7.widget.CardView
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:card_view="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/card_view"
+	android:layout_width="match_parent"
+	android:layout_height="100dp"
+	android:layout_margin="10dp"
+	card_view:cardCornerRadius="10dp"
+	card_view:cardElevation="5dp">
 
-    <android.support.v7.widget.CardView
-        xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/card_view"
-        android:layout_width="350dp"
-        android:layout_height="100dp"
-        android:layout_gravity="center"
-        card_view:cardCornerRadius="4dp"
-        card_view:cardElevation="15dp">
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/tvRoomName"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="15dp"
-            android:gravity="center_vertical"
-            android:text="Roomname:"
-            android:textSize="22sp"/>
-    </android.support.v7.widget.CardView>
+		<TextView
+			android:id="@+id/tvRoomName"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_alignParentStart="true"
+			android:layout_alignParentTop="true"
+			android:layout_marginStart="16dp"
+			android:layout_marginTop="25dp"
+			android:gravity="center_vertical"
+			android:textSize="22sp"
+			tools:text="Room name"/>
 
-</LinearLayout>
+		<TextView
+			android:id="@+id/tvTotalEstiamtiom"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_alignStart="@+id/tvRoomName"
+			android:layout_below="@+id/tvRoomName"
+			android:layout_margin="10dp"
+			android:visibility="invisible"
+			tools:text="TotalEstimate: 16h"/>
+
+		<ImageView
+			android:id="@+id/ivImage"
+			android:layout_width="56dp"
+			android:layout_height="56dp"
+			android:layout_alignParentEnd="true"
+			android:layout_centerVertical="true"
+			android:layout_marginEnd="16dp"
+			android:src="@drawable/ic_check_black"
+			android:visibility="invisible"/>
+
+	</RelativeLayout>
+
+</android.support.v7.widget.CardView>

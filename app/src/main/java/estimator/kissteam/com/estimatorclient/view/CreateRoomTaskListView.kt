@@ -19,58 +19,55 @@ import kotlinx.android.synthetic.main.view_create_room_tasklist.view.*
  */
 
 class CreateRoomTaskListView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0, defStyleRes: Int = 0)
-	: CreateRoomAwareView(context) {
+    : CreateRoomAwareView(context) {
 
-	private val recyclerViewAdapter = TaskListRecyclerViewAdapter(
-			mutableListOf(
-					IssueRequestBundle(
-							"my task title",
-							"my task's description")))
+    private val recyclerViewAdapter = TaskListRecyclerViewAdapter(
+            mutableListOf())
 
-	private val clickListener = OnClickListener {
-		val addTaskDialogView = AddTaskDialogView(context)
+    private val clickListener = OnClickListener {
+        val addTaskDialogView = AddTaskDialogView(context)
 
-		val dialog = AlertDialog.Builder(context)
-				.setView(addTaskDialogView)
-				.create()
+        val dialog = AlertDialog.Builder(context)
+                .setView(addTaskDialogView)
+                .create()
 
-		addTaskDialogView
-				.liveData
-				.observe(
-						context as LifecycleOwner,
-						Observer { pair ->
-							//TODO does pair can be null ?
-							pair?.let {
-								recyclerViewAdapter
-										.addIssue(IssueRequestBundle(
-												it.first,
-												it.second))
-							}
+        addTaskDialogView
+                .liveData
+                .observe(
+                        context as LifecycleOwner,
+                        Observer { pair ->
+                            //TODO does pair can be null ?
+                            pair?.let {
+                                recyclerViewAdapter
+                                        .addIssue(IssueRequestBundle(
+                                                it.first,
+                                                it.second))
+                            }
 
-							dialog.cancel()
-						})
+                            dialog.cancel()
+                        })
 
 
-		dialog.show()
-	}
+        dialog.show()
+    }
 
-	init {
-		val inflater = context
-				.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-		inflater.inflate(R.layout.view_create_room_tasklist, this, true)
+    init {
+        val inflater = context
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        inflater.inflate(R.layout.view_create_room_tasklist, this, true)
 
-		this.recyclerViewTasks.layoutManager = LinearLayoutManager(context)
-		this.recyclerViewTasks.adapter = this.recyclerViewAdapter
-		tvAddNewTask.setOnClickListener(this.clickListener)
-	}
+        this.recyclerViewTasks.layoutManager = LinearLayoutManager(context)
+        this.recyclerViewTasks.adapter = this.recyclerViewAdapter
+        tvAddNewTask.setOnClickListener(this.clickListener)
+    }
 
-	fun setTaskList(taskList:MutableList<IssueRequestBundle>)  {
-		recyclerViewAdapter.myDataset.clear()
-		recyclerViewAdapter.myDataset.addAll(taskList)
-		recyclerViewAdapter.notifyDataSetChanged()
-	}
+    fun setTaskList(taskList: MutableList<IssueRequestBundle>) {
+        recyclerViewAdapter.myDataset.clear()
+        recyclerViewAdapter.myDataset.addAll(taskList)
+        recyclerViewAdapter.notifyDataSetChanged()
+    }
 
-	override fun modifyCreateRoomBundle(createRoomBundle: CreateRoomBundle): CreateRoomBundle {
-		return createRoomBundle.copy(issueList = recyclerViewAdapter.myDataset) //To change body of created functions use File | Settings | File Templates.
-	}
+    override fun modifyCreateRoomBundle(createRoomBundle: CreateRoomBundle): CreateRoomBundle {
+        return createRoomBundle.copy(issueList = recyclerViewAdapter.myDataset) //To change body of created functions use File | Settings | File Templates.
+    }
 }

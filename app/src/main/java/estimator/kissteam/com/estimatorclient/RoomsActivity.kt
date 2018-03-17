@@ -38,9 +38,7 @@ class RoomsActivity : AppCompatActivity() {
 		setContentView(R.layout.activity_rooms)
 		this.recyclerRooms.layoutManager = LinearLayoutManager(this)
 		this.recyclerRooms.adapter = this.recyclerViewAdapter
-		btnEstimation.setOnClickListener({
-			startActivity(EstimationActivity.createIntent(this))
-		})
+
 		btnCreateRoom.setOnClickListener {
 			startActivity(Intent(this, CreateRoomActivity::class.java))
 		}

@@ -49,7 +49,6 @@ class EstimationActivity : AppCompatActivity() {
 		vpEstimationViewPager.addOnPageChangeListener(onPageListener)
 		getEstimationViewModel()
 				.tasksLiveData.observe(this, Observer {
-
 			if (it != null) {
 				issuesViewPagerAdapter?.issues?.clear()
 				issuesViewPagerAdapter?.issues?.addAll(it)
@@ -101,6 +100,7 @@ class EstimationActivity : AppCompatActivity() {
 			alertDialog
 					.show()
 		})
+
 	}
 
 	inner class DetailOnPageChangeListener : ViewPager.SimpleOnPageChangeListener() {

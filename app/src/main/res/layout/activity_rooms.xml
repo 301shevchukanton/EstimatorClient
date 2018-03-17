@@ -6,12 +6,20 @@
 	android:layout_height="match_parent"
 	tools:context="estimator.kissteam.com.estimatorclient.RoomsActivity">
 
-    <android.support.v7.widget.RecyclerView
+	<android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
 		android:layout_margin="15dp"
         android:text="Rooms"
         android:id="@+id/recyclerRooms"/>
+
+	<ProgressBar
+		android:layout_centerInParent="true"
+		android:id="@+id/progressBar"
+		style="?android:attr/progressBarStyle"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:visibility="gone"/>
 
 	<android.support.design.widget.FloatingActionButton
 		android:id="@+id/btnCreateRoom"

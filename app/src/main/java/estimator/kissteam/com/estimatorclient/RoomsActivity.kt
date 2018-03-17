@@ -4,9 +4,11 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
+import android.opengl.Visibility
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import android.view.View
 import estimator.kissteam.com.estimatorclient.dal.entities.Room
 import estimator.kissteam.com.estimatorclient.view.recycler.RoomsRecyclerViewAdapter
 import estimator.kissteam.com.estimatorclient.viewmodel.RoomsViewModel
@@ -38,6 +40,7 @@ class RoomsActivity : AppCompatActivity() {
 		setContentView(R.layout.activity_rooms)
 		this.recyclerRooms.layoutManager = LinearLayoutManager(this)
 		this.recyclerRooms.adapter = this.recyclerViewAdapter
+		progressBar.visibility = View.VISIBLE
 
 		btnCreateRoom.setOnClickListener {
 			startActivity(Intent(this, CreateRoomActivity::class.java))
@@ -46,9 +49,12 @@ class RoomsActivity : AppCompatActivity() {
 				.roomLiveData
 				.observe(this, Observer {
 					if (it != null) {
+						progressBar.visibility = View.GONE
 						this.recyclerViewAdapter.myDataset.clear()
 						this.recyclerViewAdapter.myDataset.addAll<Room>(it)
 						this.recyclerViewAdapter.notifyDataSetChanged()
+					} else {
+						progressBar.visibility = View.VISIBLE
 					}
 				})
 		recyclerViewAdapter

@@ -25,12 +25,11 @@ class UsersRecyclerViewAdapter(val myDataset: MutableList<Pair<User, Boolean>>) 
 		holder.userListItemView.setOnClickListener {
 			myDataset[position] = myDataset[position].copy(
 					second = !myDataset[position].second)
+			holder.userListItemView.setUser(myDataset[position].first, myDataset[position].second)
+
 		}
 	}
 
 	override fun getItemCount() = myDataset.size
 
-	fun addUser(user: User, checked: Boolean = false) {
-		myDataset.add(user to checked)
-	}
 }

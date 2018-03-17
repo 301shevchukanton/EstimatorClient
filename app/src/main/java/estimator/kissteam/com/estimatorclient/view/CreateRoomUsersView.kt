@@ -67,7 +67,7 @@ class CreateRoomUsersView @JvmOverloads constructor(context: Context, attrs: Att
 					.execute()
 					.map { users ->
 						users
-								.map { user -> user to true }
+								.map { user -> user to false }
 								.toMutableList()
 					}
 					.subscribeOn(Schedulers.io())

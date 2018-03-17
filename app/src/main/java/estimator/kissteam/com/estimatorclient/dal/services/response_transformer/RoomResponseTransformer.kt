@@ -12,10 +12,18 @@ class RoomResponseTransformer : ResponseTransformer<RoomResponse, Room> {
 
 	override fun transform(response: RoomResponse): Room {
 		if (response.id != null
-				&& response.creator != null
+				&& response.author_id != null
 				&& response.title != null
-				&& response.strategy != null) {
-			return Room(response.id, response.title, response.strategy, response.creator)
+				&& response.strategy != null
+				&& response.created_at != null
+				&& response.updated_at != null) {
+			return Room(
+					response.id,
+					response.title,
+					response.strategy,
+					response.author_id,
+					response.created_at,
+					response.updated_at)
 		} else {
 			throw EntityResponseTransformationError()
 		}

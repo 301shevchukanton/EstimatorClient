@@ -8,4 +8,6 @@ package estimator.kissteam.com.estimatorclient.dal.entities
 class Room(val id: String,
 		   val title: String,
 		   val strategyId: String,
-		   val creatorId: String)
+		   val authorId: String,
+		   val creationDate: String,
+		   val modificationDate: String)

@@ -7,4 +7,6 @@ package estimator.kissteam.com.estimatorclient.dal.services.request_response
 class RoomResponse(val id: String?,
 				   val title: String?,
 				   val strategy: String?,
-				   val creator: String?)
+				   val author_id: String?,
+				   val updated_at: String?,
+				   val created_at: String?)

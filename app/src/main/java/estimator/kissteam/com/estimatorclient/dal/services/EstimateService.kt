@@ -12,17 +12,17 @@ import retrofit2.http.*
  */
 interface EstimateService {
 
-	@GET("room/{roomId}/issues/{issueId}/estimates")
+	@GET("rooms/{roomId}/issues/{issueId}/estimates")
 	fun getEstimates(@Path("roomId") roomId: String,
 					 @Path("issueId") issueId: String): Observable<List<EstimateResponse>>
 
-	@PUT("room/{roomId}/issues/{issueId}/estimates")
+	@PUT("rooms/{roomId}/issues/{issueId}/estimates")
 	fun createOrUpdateEstimate(@Path("roomId") roomId: String,
 							   @Path("issueId") issueId: String,
 							   @Body estimateRequestBundle: EstimateRequestBundle
 	): Observable<EstimateResponse>
 
-	@DELETE("room/{roomId}/issues/{issueId}/estimates")
+	@DELETE("rooms/{roomId}/issues/{issueId}/estimates")
 	fun deleteEstimate(@Path("roomId") roomId: String,
 					   @Path("issueId") issueId: String): Completable
 }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
+    android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,17 +11,17 @@
    <android.support.v4.view.ViewPager
        android:id="@+id/vpEstimationViewPager"
        android:layout_width="match_parent"
-       android:layout_height="wrap_content">
+       android:layout_height="0dp"
+       android:layout_weight="1"
+       >
 
    </android.support.v4.view.ViewPager>
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/vpEstimationViewPager"
-        android:layout_marginBottom="128dp"
-        android:text="Poker cards will be here"
-        android:textSize="20sp"/>
-</RelativeLayout>
+
+    <estimator.kissteam.com.estimatorclient.view.DeckItemView
+        android:id="@+id/deckView"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="0dp"/>
+
+</LinearLayout>

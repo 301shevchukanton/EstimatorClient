@@ -65,14 +65,16 @@ class DeckItemView @JvmOverloads constructor(context: Context, attrs: AttributeS
 	fun selectCard(cardValue: Float) {
 		this.views
 				.forEach{
-					it.setBackgroundColor(resources.getColor(android.R.color.holo_green_dark))
+					it.setBackgroundResource(R.drawable.ic_card)
+//					it.setBackgroundColor(resources.getColor(android.R.color.holo_green_dark))
 				}
 		this.views
 				.filter{
 					it.text == cardValue.toInt().toString()
 				}
 				.forEach{
-					it.setBackgroundColor(resources.getColor(android.R.color.holo_blue_dark))
+					it.setBackgroundResource(R.drawable.ic_card_3)
+					//it.setBackgroundColor(resources.getColor(android.R.color.holo_blue_dark))
 				}
 	}
 }

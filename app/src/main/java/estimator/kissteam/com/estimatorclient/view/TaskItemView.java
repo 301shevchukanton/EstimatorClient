@@ -9,8 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import estimator.kissteam.com.estimatorclient.R;
-import estimator.kissteam.com.estimatorclient.dal.entities.Issue;
-import estimator.kissteam.com.estimatorclient.dal.services.request_entities.IssueInformation;
+import estimator.kissteam.com.estimatorclient.dal.services.request_entity.IssueInformation;
 
 /**
  * Created by AntonShevchuk on 16.03.2018.

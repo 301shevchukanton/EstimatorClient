@@ -22,4 +22,10 @@ class OauthRepository {
             preference.edit().putString("preference_access_token", token).commit()
         }
     }
+
+    fun clearAccessToken(token: String?) {
+        if (token != null) {
+            preference.edit().remove("preference_access_token").commit()
+        }
+    }
 }

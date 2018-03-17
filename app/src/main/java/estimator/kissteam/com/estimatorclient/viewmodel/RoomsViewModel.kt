@@ -17,7 +17,7 @@ class RoomsViewModel : ViewModel() {
 	val roomLiveData: MutableLiveData<List<Room>> = MutableLiveData()
 
 	init {
-		Observable.interval(2, TimeUnit.SECONDS)
+		Observable.interval(4, TimeUnit.SECONDS)
 				.subscribeOn(Schedulers.io())
 				.flatMap {
 					GetRoomsGateway().execute()

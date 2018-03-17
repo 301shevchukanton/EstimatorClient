@@ -7,29 +7,38 @@
 	tools:context="estimator.kissteam.com.estimatorclient.RoomsActivity">
 
 	<android.support.v7.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+		android:id="@+id/recyclerRooms"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
 		android:layout_margin="15dp"
-        android:text="Rooms"
-        android:id="@+id/recyclerRooms"/>
+		android:text="Rooms"/>
 
 	<ProgressBar
-		android:layout_centerInParent="true"
 		android:id="@+id/progressBar"
 		style="?android:attr/progressBarStyle"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
+		android:layout_centerInParent="true"
 		android:visibility="gone"/>
 
 	<android.support.design.widget.FloatingActionButton
 		android:id="@+id/btnCreateRoom"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_gravity="end|bottom"
 		android:layout_alignParentBottom="true"
 		android:layout_alignParentRight="true"
+		android:layout_gravity="end|bottom"
 		android:layout_marginBottom="23dp"
 		android:layout_marginRight="23dp"
 		android:src="@drawable/ic_create_white_24dp"/>
+
+	<TextView
+		android:id="@+id/placeholder"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:gravity="center"
+		android:text="There are no created rooms jet."
+		android:textSize="22sp"
+		android:visibility="invisible"/>
 
 </RelativeLayout>

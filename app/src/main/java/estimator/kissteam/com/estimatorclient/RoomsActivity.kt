@@ -4,12 +4,10 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
-import android.opengl.Visibility
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
-import estimator.kissteam.com.estimatorclient.dal.entities.Room
 import estimator.kissteam.com.estimatorclient.view.recycler.RoomsRecyclerViewAdapter
 import estimator.kissteam.com.estimatorclient.viewmodel.RoomsViewModel
 import kotlinx.android.synthetic.main.activity_rooms.*
@@ -49,6 +47,11 @@ class RoomsActivity : AppCompatActivity() {
 				.roomLiveData
 				.observe(this, Observer {
 					if (it != null) {
+						if (it.isEmpty()) {
+							placeholder.visibility = View.VISIBLE
+						} else {
+							placeholder.visibility = View.INVISIBLE
+						}
 						progressBar.visibility = View.GONE
 						this.recyclerViewAdapter.setData(it)
 						this.recyclerViewAdapter.notifyDataSetChanged()

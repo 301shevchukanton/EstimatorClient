@@ -17,18 +17,15 @@ class RoomsViewModel : ViewModel() {
 	val roomLiveData: MutableLiveData<List<Room>> = MutableLiveData()
 
 	init {
-		Observable.timer(2, TimeUnit.SECONDS)
+		Observable.interval(2, TimeUnit.SECONDS)
 				.subscribeOn(Schedulers.io())
 				.flatMap {
 					GetRoomsGateway().execute()
 				}
-				.distinctUntilChanged()
 				.observeOn(AndroidSchedulers.mainThread())
 				.onErrorReturn { emptyList() }
 				.subscribe {
 					roomLiveData.value = it
 				}
 	}
-
-
 }

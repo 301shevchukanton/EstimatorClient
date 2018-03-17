@@ -1,4 +1,4 @@
-package estimator.kissteam.com.estimatorclient.dal.gateway.estimation_strategy
+package estimator.kissteam.com.estimatorclient.dal.gateway.strategy
 
 import estimator.kissteam.com.estimatorclient.dal.entities.Strategy
 import estimator.kissteam.com.estimatorclient.dal.services.StrategyService

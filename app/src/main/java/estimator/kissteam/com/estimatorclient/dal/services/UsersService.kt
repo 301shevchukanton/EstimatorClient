@@ -13,12 +13,12 @@ import retrofit2.http.POST
  */
 interface UsersService {
 
-	@POST("/users")
+	@POST("users")
 	fun createUser(@Body newUserInfo: NewUserInfo): Observable<User>
 
-	@GET("/users")
+	@GET("users")
 	fun getUsers(): Observable<List<User>>
 
-	@GET("/user")
+	@GET("user")
 	fun getUser(): Observable<User>
 }

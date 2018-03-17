@@ -42,7 +42,7 @@ class GetAccessTokenGateway constructor(
     }
 
     private fun createRequest(): Observable<GetAccessTokenResponse> =
-            RetrofitFactory()
+            RetrofitFactory("http://159.89.7.3")
                     .createForAuth()
                     .create(GetAccessTokenService::class.java)
                     .oauthToken(createRequestParameters())
@@ -52,7 +52,7 @@ class GetAccessTokenGateway constructor(
                 put("grant_type", "password")
                 put("client_id", "2")
                 put("client_secret", "Vm5zJt1czIbAXQfwnwNY6kJIyl2f7HDHPq66iQCR")
-                put("email", user)
+                put("username", user)
                 put("password", password)
             }
 }

@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit
  * Created by: anna
  * Date: 3/16/18.
  */
-class RetrofitFactory constructor(private val baseUrl: String = "http://159.89.7.3") {
+class RetrofitFactory constructor(private val baseUrl: String = "http://159.89.7.3/api/") {
 
     companion object {
         private const val MAX_REQUESTS_PER_HOST = 5
@@ -23,6 +23,11 @@ class RetrofitFactory constructor(private val baseUrl: String = "http://159.89.7
         inline fun <reified Service> createService() : Service =
                 RetrofitFactory()
                         .create()
+                        .create(Service::class.java)
+
+        inline fun <reified Service> createServiceForAuth() : Service =
+                RetrofitFactory()
+                        .createForAuth()
                         .create(Service::class.java)
     }
 
@@ -35,6 +40,7 @@ class RetrofitFactory constructor(private val baseUrl: String = "http://159.89.7
                 .connectTimeout(CONNECT_TIMEOUT, TimeUnit.SECONDS)
                 .addNetworkInterceptor(interceptor)
                 .addInterceptor(AuthInterceptor(tokenProvider.provide()))
+                .addInterceptor(HeadersInterceptor())
                 .authenticator(Authenticator(tokenProvider.provide()))
                 .build()
 
@@ -54,6 +60,7 @@ class RetrofitFactory constructor(private val baseUrl: String = "http://159.89.7
 
         val client = OkHttpClient.Builder()
                 .addNetworkInterceptor(interceptor)
+                .addInterceptor(HeadersInterceptor())
                 .connectTimeout(CONNECT_TIMEOUT, TimeUnit.SECONDS)
                 .build()
 

@@ -16,9 +16,10 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        //TODO: Extract to ViewModel
         findViewById<Button>(R.id.btnLogin).setOnClickListener({
 
-            //TODO: Extract to ViewModel
             GetAccessTokenGateway(
                     (findViewById<EditText>(R.id.etName)).text.toString(),
                     (findViewById<EditText>(R.id.etPass)).text.toString()

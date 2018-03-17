@@ -41,7 +41,7 @@ class CreateRoomActivity : AppCompatActivity() {
 		getRoomViewModel()
 				.roomCreated
 				.observe(this, Observer {
-					Toast.makeText(this, "Room crated", Toast.LENGTH_SHORT).show()
+					Toast.makeText(this, "Room created", Toast.LENGTH_SHORT).show()
 					finish()
 				})
 		getRoomViewModel()

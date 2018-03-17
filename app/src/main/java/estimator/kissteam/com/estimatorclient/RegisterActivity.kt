@@ -30,16 +30,21 @@ class RegisterActivity : AppCompatActivity() {
         findViewById<Button>(R.id.btnRegister).setOnClickListener({
             val user = (findViewById<EditText>(R.id.etName)).text.toString()
             val pass = (findViewById<EditText>(R.id.etPass)).text.toString()
-            CreateUserGateway(user, pass)
-                    .execute()
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe({
-                        showToast("${user} has been created successfully!")
-                        finish()
-                    }, {
-                        showToast("Can't create user. Something went wrong")
-                    })
+
+            if(!user.isEmpty() && !pass.isEmpty()) {
+                CreateUserGateway(user, pass)
+                        .execute()
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe({
+                            showToast("${user} has been created successfully!")
+                            finish()
+                        }, {
+                            showToast("Can't create user. Something went wrong")
+                        })
+            } else {
+                showToast("Credentials must not be empty")
+            }
         })
     }
 

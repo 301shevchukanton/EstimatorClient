@@ -6,9 +6,12 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import estimator.kissteam.com.estimatorclient.R
 import estimator.kissteam.com.estimatorclient.dal.entities.User
+import estimator.kissteam.com.estimatorclient.dal.gateway.user.GetAllUsersGateway
 import estimator.kissteam.com.estimatorclient.view.recycler.UsersRecyclerViewAdapter
 import estimator.kissteam.com.estimatorclient.viewmodel.CreateRoomBundle
 import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.view_create_room_users.view.*
 
 /**
@@ -59,30 +62,21 @@ class CreateRoomUsersView @JvmOverloads constructor(context: Context, attrs: Att
 				}
 	}
 
-	//TODO make call to gateway
 	private fun loadUserList(): Observable<MutableList<Pair<User, Boolean>>> =
-			Observable.just(mutableListOf(
-					User(
-							"0",
-							"Vasya",
-							"20.02.2012",
-							"20.02.2012") to true,
-					User(
-							"1",
-							"Petya",
-							"20.02.2012",
-							"20.02.2012") to true,
-					User(
-							"2",
-							"Kostya",
-							"20.02.2012",
-							"20.02.2012") to true))
-
+			GetAllUsersGateway()
+					.execute()
+					.map { users ->
+						users
+								.map { user -> user to true }
+								.toMutableList()
+					}
+					.subscribeOn(Schedulers.io())
+					.observeOn(AndroidSchedulers.mainThread())
 
 	override fun modifyCreateRoomBundle(createRoomBundle: CreateRoomBundle): CreateRoomBundle {
 		return createRoomBundle.copy(users = recyclerViewAdapter
-				?.myDataset?.
-				filter { it.second }
+				?.myDataset
+				?.filter { it.second }
 				?.map { it.first } as MutableList)
 	}
 }

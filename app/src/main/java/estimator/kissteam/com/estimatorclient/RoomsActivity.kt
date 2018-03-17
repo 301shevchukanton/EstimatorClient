@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.Button
+import kotlinx.android.synthetic.main.activity_rooms.*
 
 
 /**
@@ -13,18 +14,22 @@ import android.widget.Button
  */
 class RoomsActivity : AppCompatActivity() {
 
-    companion object {
-        fun createIntent(context: Context) =
-                Intent(context, RoomsActivity::class.java)
-                        .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-    }
+	companion object {
+		fun createIntent(context: Context) =
+				Intent(context, RoomsActivity::class.java)
+						.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+	}
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_rooms)
+	override fun onCreate(savedInstanceState: Bundle?) {
+		super.onCreate(savedInstanceState)
+		setContentView(R.layout.activity_rooms)
 
-        findViewById<Button>(R.id.btnEstimation).setOnClickListener({
-            startActivity(EstimationActivity.createIntent(this))
-        })
-    }
+		btnCreateRoom.setOnClickListener {
+			startActivity(Intent(this, CreateRoomActivity::class.java))
+		}
+
+		findViewById<Button>(R.id.btnEstimation).setOnClickListener({
+			startActivity(EstimationActivity.createIntent(this))
+		})
+	}
 }

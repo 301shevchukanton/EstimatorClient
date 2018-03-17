@@ -6,8 +6,12 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import estimator.kissteam.com.estimatorclient.R
 import estimator.kissteam.com.estimatorclient.dal.entities.Strategy
+import estimator.kissteam.com.estimatorclient.dal.gateway.strategy.GetStrategiesGateway
 import estimator.kissteam.com.estimatorclient.view.recycler.EstimationStrategiesRecyclerViewAdapter
 import estimator.kissteam.com.estimatorclient.viewmodel.CreateRoomBundle
+import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.view_create_room_estimation_strategy.view.*
 
 /**
@@ -16,14 +20,7 @@ import kotlinx.android.synthetic.main.view_create_room_estimation_strategy.view.
 
 class CreateRoomEstimationStrategyView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0, defStyleRes: Int = 0) : CreateRoomAwareView(context) {
 
-	private val recyclerViewAdapter = EstimationStrategiesRecyclerViewAdapter(
-			mutableListOf(
-					Strategy("0",
-							"Estimate by average",
-							"Estimate by average value") to false,
-					Strategy("0",
-							"Estimate by the highest value",
-							"Estimate by the highest value strategy") to false))
+	private val recyclerViewAdapter: EstimationStrategiesRecyclerViewAdapter by lazy { EstimationStrategiesRecyclerViewAdapter(mutableListOf()) }
 
 	init {
 		val inflater = context
@@ -31,6 +28,12 @@ class CreateRoomEstimationStrategyView @JvmOverloads constructor(context: Contex
 		inflater.inflate(R.layout.view_create_room_estimation_strategy, this, true)
 		this.recyclerViewEstimations.layoutManager = LinearLayoutManager(context)
 		this.recyclerViewEstimations.adapter = this.recyclerViewAdapter
+		loadStrategiesList()
+				.subscribe { pairs ->
+					recyclerViewAdapter.myDataset.clear()
+					recyclerViewAdapter.myDataset.addAll(pairs)
+					recyclerViewAdapter.notifyDataSetChanged()
+				}
 	}
 
 	fun setEstimationStrategy(strategy: Strategy) {
@@ -53,4 +56,15 @@ class CreateRoomEstimationStrategyView @JvmOverloads constructor(context: Contex
 			return createRoomBundle
 		}
 	}
+
+	private fun loadStrategiesList(): Observable<MutableList<Pair<Strategy, Boolean>>> =
+			GetStrategiesGateway()
+					.execute()
+					.map { strategies ->
+						strategies
+								.map { strategy -> strategy to false }
+								.toMutableList()
+					}
+					.subscribeOn(Schedulers.io())
+					.observeOn(AndroidSchedulers.mainThread())
 }

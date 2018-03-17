@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<FrameLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
@@ -7,27 +7,28 @@
 	tools:context="estimator.kissteam.com.estimatorclient.RoomsActivity">
 
     <android.support.v7.widget.RecyclerView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+		android:layout_margin="15dp"
         android:text="Rooms"
         android:id="@+id/recyclerRooms"/>
 
-	<Button
+	<!--<Button-->
+		<!--android:id="@+id/btnCreateRoom"-->
+		<!--android:layout_width="wrap_content"-->
+		<!--android:layout_height="wrap_content"-->
+		<!--android:layout_alignParentBottom="true"-->
+		<!--android:layout_centerHorizontal="true"-->
+		<!--android:layout_marginBottom="220dp"-->
+		<!--android:text="Create new one"/>-->
+
+	<android.support.design.widget.FloatingActionButton
 		android:id="@+id/btnCreateRoom"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_alignParentBottom="true"
-		android:layout_centerHorizontal="true"
-		android:layout_marginBottom="220dp"
-		android:text="Create new one"/>
+		android:layout_gravity="end|bottom"
+		android:layout_marginBottom="23dp"
+		android:layout_marginRight="23dp"
+		android:src="@drawable/ic_create_white_24dp"/>
 
-	<Button
-		android:id="@+id/btnEstimation"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_alignParentBottom="true"
-		android:layout_centerHorizontal="true"
-		android:layout_marginBottom="106dp"
-		android:text="Open Estimation screen"/>
-
-</RelativeLayout>
+</FrameLayout>

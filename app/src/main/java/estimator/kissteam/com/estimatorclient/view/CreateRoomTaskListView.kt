@@ -36,13 +36,21 @@ class CreateRoomTaskListView @JvmOverloads constructor(context: Context, attrs: 
 				.setView(addTaskDialogView)
 				.create()
 
-		addTaskDialogView.liveData
-				.observe(context as LifecycleOwner, Observer {
-					recyclerViewAdapter.addTask(IssueRequestBundle(
-							it?.first,
-							it?.second))
-					dialog.cancel()
-				})
+		addTaskDialogView
+				.liveData
+				.observe(
+						context as LifecycleOwner,
+						Observer { pair ->
+							//TODO does pair can be null ?
+							pair?.let {
+								recyclerViewAdapter
+										.addTask(IssueRequestBundle(
+												it.first,
+												it.second))
+							}
+
+							dialog.cancel()
+						})
 
 		dialog
 				.show()

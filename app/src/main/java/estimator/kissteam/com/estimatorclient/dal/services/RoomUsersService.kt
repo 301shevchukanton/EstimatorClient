@@ -16,9 +16,11 @@ interface RoomUsersService {
 
 	@POST("rooms/{roomId}/users")
 	fun addUserToRoom(@Path("roomId") roomId: String,
-					  @Body roomUserRequestBundle: RoomUserRequestBundle): Observable<List<UserResponse>>
+					  @Body roomUserRequestBundle: RoomUserRequestBundle
+	): Observable<List<UserResponse>>
 
 	@DELETE("rooms/{roomId}/users")
 	fun deleteUserFromRoom(@Path("roomId") roomId: String,
-						   @Body roomUserRequestBundle: RoomUserRequestBundle): Observable<List<UserResponse>>
+						   @Body roomUserRequestBundle: RoomUserRequestBundle
+	): Observable<List<UserResponse>>
 }

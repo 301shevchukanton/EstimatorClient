@@ -1,8 +1,8 @@
 package estimator.kissteam.com.estimatorclient.viewmodel
 
 import android.arch.lifecycle.ViewModel
-import estimator.kissteam.com.estimatorclient.dal.entities.EstimationStrategy
 import estimator.kissteam.com.estimatorclient.dal.entities.Issue
+import estimator.kissteam.com.estimatorclient.dal.entities.Strategy
 import estimator.kissteam.com.estimatorclient.dal.entities.User
 
 /**
@@ -13,10 +13,10 @@ public class CreateRoomViewModel : ViewModel() {
 	val createRoomBundle: CreateRoomBundle = CreateRoomBundle()
 
 	data class CreateRoomBundle(val name: String? = null,
-	                            val description: String? = null,
-	                            val issueList: MutableList<Issue>? = mutableListOf(),
-	                            val estimationStrategy: EstimationStrategy? = null,
-	                            val users: MutableList<User>? = mutableListOf())
+								val description: String? = null,
+								val issueList: MutableList<Issue>? = mutableListOf(),
+								val estimationStrategy: Strategy? = null,
+								val users: MutableList<User>? = mutableListOf())
 
 	fun setName(name: String) {
 		createRoomBundle.copy(name = name)
@@ -30,8 +30,8 @@ public class CreateRoomViewModel : ViewModel() {
 		createRoomBundle.issueList?.add(issue)
 	}
 
-	fun setEstimationStrategy(estimationStrategy: EstimationStrategy?) {
-		createRoomBundle.copy(estimationStrategy =  estimationStrategy)
+	fun setEstimationStrategy(estimationStrategy: Strategy?) {
+		createRoomBundle.copy(estimationStrategy = estimationStrategy)
 	}
 
 	fun addUser(user: User) {

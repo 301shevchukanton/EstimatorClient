@@ -43,7 +43,7 @@ class RoomsActivity : AppCompatActivity() {
 			startActivity(Intent(this, CreateRoomActivity::class.java))
 		}
 		getRoomsViewModel()
-				.liveData
+				.roomLiveData
 				.observe(this, Observer {
 					if (it != null) {
 						this.recyclerViewAdapter.myDataset.clear()

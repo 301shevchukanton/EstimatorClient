@@ -33,8 +33,7 @@
         android:layout_marginTop="70dp"
         android:ems="10"
         android:hint="Name"
-        android:inputType="textPersonName"
-        android:text="alk@qapint.com"/>
+        android:inputType="textPersonName"/>
 
     <EditText
         android:id="@+id/etPass"
@@ -45,8 +44,7 @@
         android:layout_marginTop="15dp"
         android:ems="10"
         android:hint="password"
-        android:inputType="textPassword"
-        android:text="111111"/>
+        android:inputType="textPassword"/>
 
     <Button
         android:id="@+id/btnRegister"

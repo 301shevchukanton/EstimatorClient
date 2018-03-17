@@ -72,4 +72,11 @@ class DeckItemView @JvmOverloads constructor(context: Context, attrs: AttributeS
 					it.setBackgroundColor(resources.getColor(android.R.color.holo_blue_dark))
 				}
 	}
+
+	fun clearSelection() {
+		this.views
+				.forEach{
+					it.setBackgroundColor(resources.getColor(android.R.color.holo_green_dark))
+				}
+	}
 }

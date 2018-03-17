@@ -3,9 +3,11 @@ package estimator.kissteam.com.estimatorclient
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.view.ViewPager
+import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import estimator.kissteam.com.estimatorclient.dal.entities.Room
 import estimator.kissteam.com.estimatorclient.view.view_pager.IssuesViewPagerAdapter
@@ -52,6 +54,12 @@ class EstimationActivity : AppCompatActivity() {
 				issuesViewPagerAdapter?.issues?.clear()
 				issuesViewPagerAdapter?.issues?.addAll(it)
 				issuesViewPagerAdapter?.notifyDataSetChanged()
+				if(issuesViewPagerAdapter?.issues?.isNotEmpty() == true) {
+					getEstimationViewModel()
+							.getUserEstimationForIssue(
+									issuesViewPagerAdapter?.issues?.get(onPageListener.currentPage)!!
+							)
+				}
 			}
 		})
 		getEstimationViewModel().nextTask.observe(this, Observer {
@@ -66,6 +74,7 @@ class EstimationActivity : AppCompatActivity() {
 				.selectCuurentEstimate
 				.observe(this, Observer {
 					if (it != null) {
+						issuesViewPagerAdapter?.issues?.set(onPageListener.currentPage, issuesViewPagerAdapter?.issues?.get(onPageListener.currentPage)?.copy(estimate = it)!!)
 						deckView.selectCard(it)
 					}
 				})
@@ -73,11 +82,25 @@ class EstimationActivity : AppCompatActivity() {
 				.onItemClick
 				.observe(this, Observer {
 					if (it != null && issuesViewPagerAdapter?.issues != null) {
+						issuesViewPagerAdapter?.issues?.set(onPageListener.currentPage, issuesViewPagerAdapter?.issues?.get(onPageListener.currentPage)?.copy(estimate = it)!!)
 						getEstimationViewModel().sendEstimation(
 								issuesViewPagerAdapter?.issues?.get(onPageListener.currentPage)?.id?.toString()!!,
 								it)
+						issuesViewPagerAdapter?.checkForCompletion()
 					}
 				})
+		issuesViewPagerAdapter?.allEstimationsComplete?.observe(this, Observer {
+			val alertDialog = AlertDialog.Builder(this)
+					.setTitle("Your estimation complete")
+					.setMessage("Summary for your estimation is " + it)
+					.setPositiveButton("OK", { dialogInterface: DialogInterface,
+					                           i: Int ->
+						EstimationActivity@this.finish()
+					})
+					.create()
+			alertDialog
+					.show()
+		})
 	}
 
 	inner class DetailOnPageChangeListener : ViewPager.SimpleOnPageChangeListener() {
@@ -86,6 +109,7 @@ class EstimationActivity : AppCompatActivity() {
 			private set
 
 		override fun onPageSelected(position: Int) {
+			deckView.clearSelection()
 			getEstimationViewModel()
 					.getUserEstimationForIssue(
 							issuesViewPagerAdapter?.issues?.get(position)!!

@@ -13,19 +13,19 @@ import retrofit2.http.*
  */
 interface RoomService {
 
-	@POST("/rooms")
+	@POST("rooms")
 	fun createRoom(@Body roomInfo: RoomInfo): Observable<Room>
 
-	@GET("/rooms")
+	@GET("rooms")
 	fun getRooms(): Observable<List<Room>>
 
-	@GET("/rooms/{roomId}")
+	@GET("rooms/{roomId}")
 	fun getRoom(@Path("roomId") roomId: String): Observable<Room>
 
-	@PUT("/rooms/{roomId}")
+	@PUT("rooms/{roomId}")
 	fun updateRoom(@Path("roomId") roomId: String,
 				   @Body updateRoom: UpdateRoom): Observable<Room>
 
-	@DELETE("/rooms/{roomId}")
+	@DELETE("rooms/{roomId}")
 	fun deleteRoom(@Path("roomId") roomId: String): Completable
 }

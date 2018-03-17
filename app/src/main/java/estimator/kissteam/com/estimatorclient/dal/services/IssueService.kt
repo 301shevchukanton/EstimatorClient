@@ -12,24 +12,24 @@ import retrofit2.http.*
  */
 interface IssueService {
 
-	@POST("/room/{roomId}/issues")
+	@POST("room/{roomId}/issues")
 	fun createIssue(@Path("roomId") roomId: String,
 					@Body issueInformation: IssueInformation): Observable<Issue>
 
-	@GET("/room/{roomId}/issues")
+	@GET("room/{roomId}/issues")
 	fun getIssues(@Path("roomId") roomId: String): Observable<List<Issue>>
 
-	@GET("/room/{roomId}/issues/{issueId}")
+	@GET("room/{roomId}/issues/{issueId}")
 	fun getIssue(@Path("roomId") roomId: String,
 				 @Path("issueId") issueId: String): Observable<Issue>
 
 	//TODO room owner has request with additional filed - estimation
-	@PUT("/room/{roomId}/issues/{issueId}")
+	@PUT("room/{roomId}/issues/{issueId}")
 	fun updateIssue(@Path("roomId") roomId: String,
 					@Path("issueId") issueId: String,
 					@Body issueInformation: IssueInformation): Observable<Issue>
 
-	@DELETE("/room/{roomId}/issues/{issueId}")
+	@DELETE("room/{roomId}/issues/{issueId}")
 	fun deleteIssue(@Path("roomId") roomId: String,
 					@Path("issueId") issueId: String): Completable
 }

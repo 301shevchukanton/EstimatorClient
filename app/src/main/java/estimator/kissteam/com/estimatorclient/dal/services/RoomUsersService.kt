@@ -14,11 +14,11 @@ import retrofit2.http.Path
  */
 interface RoomUsersService {
 
-	@POST("/rooms/{roomId}/users")
+	@POST("rooms/{roomId}/users")
 	fun addUserToRoom(@Path("roomId") roomId: String,
 					  @Body roomUser: RoomUser): Observable<List<User>>
 
-	@DELETE("/rooms/{roomId}/users")
+	@DELETE("rooms/{roomId}/users")
 	fun deleteUserFromRoom(@Path("roomId") roomId: String,
 						   @Body roomUser: RoomUser): Observable<List<User>>
 }

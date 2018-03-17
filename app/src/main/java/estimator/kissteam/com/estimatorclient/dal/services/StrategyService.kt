@@ -10,6 +10,6 @@ import retrofit2.http.GET
  */
 interface StrategyService {
 
-	@GET("/strategies")
+	@GET("strategies")
 	fun getStrategies(): Observable<List<Strategy>>
 }

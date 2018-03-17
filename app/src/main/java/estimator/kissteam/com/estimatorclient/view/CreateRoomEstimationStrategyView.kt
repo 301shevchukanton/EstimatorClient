@@ -5,7 +5,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import estimator.kissteam.com.estimatorclient.R
-import estimator.kissteam.com.estimatorclient.dal.entities.EstimationStrategy
+import estimator.kissteam.com.estimatorclient.dal.entities.Strategy
 import estimator.kissteam.com.estimatorclient.view.recycler.EstimationStrategiesRecyclerViewAdapter
 import estimator.kissteam.com.estimatorclient.viewmodel.CreateRoomBundle
 import kotlinx.android.synthetic.main.view_create_room_estimation_strategy.view.*
@@ -18,10 +18,10 @@ class CreateRoomEstimationStrategyView @JvmOverloads constructor(context: Contex
 
 	private val recyclerViewAdapter = EstimationStrategiesRecyclerViewAdapter(
 			mutableListOf(
-					EstimationStrategy(0,
+					Strategy("0",
 							"Estimate by average",
 							"Estimate by average value") to false,
-					EstimationStrategy(1,
+					Strategy("0",
 							"Estimate by the highest value",
 							"Estimate by the highest value strategy") to false))
 
@@ -33,10 +33,10 @@ class CreateRoomEstimationStrategyView @JvmOverloads constructor(context: Contex
 		this.recyclerViewEstimations.adapter = this.recyclerViewAdapter
 	}
 
-	fun setEstimationStrategy(strategy: EstimationStrategy) {
+	fun setEstimationStrategy(strategy: Strategy) {
 		val strategyList = this.recyclerViewAdapter.myDataset.map {
 			if (it.first.id == strategy.id) {
-				EstimationStrategy(it.first.id, it.first.title, it.first.description) to true
+				Strategy(it.first.id, it.first.title, it.first.description) to true
 			} else {
 				it
 			}

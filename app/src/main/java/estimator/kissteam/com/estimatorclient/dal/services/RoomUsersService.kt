@@ -1,7 +1,7 @@
 package estimator.kissteam.com.estimatorclient.dal.services
 
-import estimator.kissteam.com.estimatorclient.dal.entities.User
-import estimator.kissteam.com.estimatorclient.dal.services.request_entity.RoomUser
+import estimator.kissteam.com.estimatorclient.dal.services.request_bundle.RoomUserRequestBundle
+import estimator.kissteam.com.estimatorclient.dal.services.request_response.UserResponse
 import io.reactivex.Observable
 import retrofit2.http.Body
 import retrofit2.http.DELETE
@@ -14,11 +14,13 @@ import retrofit2.http.Path
  */
 interface RoomUsersService {
 
-	@POST("/rooms/{roomId}/users")
+	@POST("rooms/{roomId}/users")
 	fun addUserToRoom(@Path("roomId") roomId: String,
-					  @Body roomUser: RoomUser): Observable<List<User>>
+					  @Body roomUserRequestBundle: RoomUserRequestBundle
+	): Observable<List<UserResponse>>
 
-	@DELETE("/rooms/{roomId}/users")
+	@DELETE("rooms/{roomId}/users")
 	fun deleteUserFromRoom(@Path("roomId") roomId: String,
-						   @Body roomUser: RoomUser): Observable<List<User>>
+						   @Body roomUserRequestBundle: RoomUserRequestBundle
+	): Observable<List<UserResponse>>
 }

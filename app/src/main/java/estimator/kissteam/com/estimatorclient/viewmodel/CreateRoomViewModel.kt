@@ -14,7 +14,5 @@ class CreateRoomViewModel : ViewModel() {
 		}
 
 	fun createRoom() {
-		
 	}
-
 }

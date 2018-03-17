@@ -8,9 +8,8 @@ import android.support.v7.widget.LinearLayoutManager
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View.OnClickListener
-import android.widget.TextView
 import estimator.kissteam.com.estimatorclient.R
-import estimator.kissteam.com.estimatorclient.dal.services.request_entity.IssueInformation
+import estimator.kissteam.com.estimatorclient.dal.services.request_bundle.IssueRequestBundle
 import estimator.kissteam.com.estimatorclient.view.recycler.TaskListRecyclerViewAdapter
 import estimator.kissteam.com.estimatorclient.viewmodel.CreateRoomBundle
 import kotlinx.android.synthetic.main.view_create_room_tasklist.view.*
@@ -24,7 +23,7 @@ class CreateRoomTaskListView @JvmOverloads constructor(context: Context, attrs: 
 
 	private val recyclerViewAdapter = TaskListRecyclerViewAdapter(
 			mutableListOf(
-					IssueInformation(
+					IssueRequestBundle(
 							"my task title",
 							"my task's description")))
 
@@ -35,14 +34,22 @@ class CreateRoomTaskListView @JvmOverloads constructor(context: Context, attrs: 
 				.setView(addTaskDialogView)
 				.create()
 
-		addTaskDialogView.liveData
-				.observe(context as LifecycleOwner, Observer {
-					recyclerViewAdapter.addIssue(IssueInformation(
-							it?.first,
-							it?.second))
-					recyclerViewAdapter.notifyDataSetChanged()
-					dialog.cancel()
-				})
+		addTaskDialogView
+				.liveData
+				.observe(
+						context as LifecycleOwner,
+						Observer { pair ->
+							//TODO does pair can be null ?
+							pair?.let {
+								recyclerViewAdapter
+										.addIssue(IssueRequestBundle(
+												it.first,
+												it.second))
+							}
+
+							dialog.cancel()
+						})
+
 
 		dialog.show()
 	}
@@ -57,7 +64,7 @@ class CreateRoomTaskListView @JvmOverloads constructor(context: Context, attrs: 
 		tvAddNewTask.setOnClickListener(this.clickListener)
 	}
 
-	fun setTaskList(taskList:MutableList<IssueInformation>)  {
+	fun setTaskList(taskList:MutableList<IssueRequestBundle>)  {
 		recyclerViewAdapter.myDataset.clear()
 		recyclerViewAdapter.myDataset.addAll(taskList)
 		recyclerViewAdapter.notifyDataSetChanged()

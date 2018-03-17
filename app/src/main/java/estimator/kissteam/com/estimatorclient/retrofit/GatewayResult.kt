@@ -6,7 +6,7 @@ import java.io.IOException
  * Created by: anna
  * Date: 3/16/18.
  */
-class GatewayResult<Entity>(val result: Entity?, val exception: IOException?) {
+class GatewayResult<Entity>(val result: Entity?, val error: IOException?) {
     constructor(exception: IOException) : this(null, exception)
     constructor(result: Entity?) : this(result, null)
 }

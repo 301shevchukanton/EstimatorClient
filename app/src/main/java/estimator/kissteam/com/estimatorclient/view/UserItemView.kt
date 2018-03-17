@@ -9,7 +9,6 @@ import android.widget.TextView
 
 import estimator.kissteam.com.estimatorclient.R
 import estimator.kissteam.com.estimatorclient.dal.entities.User
-import estimator.kissteam.com.estimatorclient.dal.services.request_entity.IssueInformation
 import kotlinx.android.synthetic.main.view_user_item.view.*
 
 /**
@@ -25,7 +24,7 @@ class UserItemView @JvmOverloads constructor(context: Context, attrs: AttributeS
 	}
 
 	fun setUser(user: User, checked : Boolean = false) {
-		tvUsername.text = user.username
+		tvUsername.text = user.email
 		cbIncluded.isChecked = checked
 	}
 }

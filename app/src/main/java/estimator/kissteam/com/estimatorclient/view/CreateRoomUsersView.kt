@@ -42,8 +42,11 @@ class CreateRoomUsersView @JvmOverloads constructor(context: Context, attrs: Att
 				.map {
 					it.map {
 						if (userList.map { it.id }.contains(it.first.id) &&
-								userList.map { it.username }.contains(it.first.username)) {
-							User(it.first.id, it.first.username) to true
+								userList.map { it.email }.contains(it.first.email)) {
+							User(it.first.id,
+									it.first.email,
+									it.first.creationDate,
+									it.first.modificationDate) to true
 						} else {
 							it
 						}
@@ -61,13 +64,19 @@ class CreateRoomUsersView @JvmOverloads constructor(context: Context, attrs: Att
 			Observable.just(mutableListOf(
 					User(
 							"0",
-							"Vasya") to true,
+							"Vasya",
+							"20.02.2012",
+							"20.02.2012") to true,
 					User(
 							"1",
-							"Petya") to true,
+							"Petya",
+							"20.02.2012",
+							"20.02.2012") to true,
 					User(
 							"2",
-							"Kostya") to true))
+							"Kostya",
+							"20.02.2012",
+							"20.02.2012") to true))
 
 
 	override fun modifyCreateRoomBundle(createRoomBundle: CreateRoomBundle): CreateRoomBundle {

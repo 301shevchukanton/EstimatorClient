@@ -9,7 +9,7 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 
 import estimator.kissteam.com.estimatorclient.R;
-import estimator.kissteam.com.estimatorclient.dal.entities.EstimationStrategy;
+import estimator.kissteam.com.estimatorclient.dal.entities.Strategy;
 
 /**
  * Created by AntonShevchuk on 16.03.2018.
@@ -18,7 +18,7 @@ import estimator.kissteam.com.estimatorclient.dal.entities.EstimationStrategy;
 public class EstimationStrategyItemView extends LinearLayout {
 	private TextView estimationStrategyTitle;
 	private TextView estimationStrategyDescription;
-	private EstimationStrategy estimationStrategy;
+	private Strategy estimationStrategy;
 	public RadioButton radioButton;
 
 	public EstimationStrategyItemView(Context context) {
@@ -43,13 +43,13 @@ public class EstimationStrategyItemView extends LinearLayout {
 		this.radioButton = findViewById(R.id.rbEstimationStrategy);
 	}
 
-	public void setEstimationStrategy(EstimationStrategy estimationStrategy) {
+	public void setEstimationStrategy(Strategy estimationStrategy) {
 		this.estimationStrategy = estimationStrategy;
 		this.estimationStrategyTitle.setText(estimationStrategy.getTitle());
 		this.estimationStrategyDescription.setText(estimationStrategy.getDescription());
 	}
 
-	public EstimationStrategy getEstimationStrategy() {
+	public Strategy getEstimationStrategy() {
 		return estimationStrategy;
 	}
 }

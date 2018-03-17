@@ -2,14 +2,14 @@ package estimator.kissteam.com.estimatorclient.view.recycler
 
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
-import estimator.kissteam.com.estimatorclient.dal.services.request_entity.IssueInformation
+import estimator.kissteam.com.estimatorclient.dal.services.request_bundle.IssueRequestBundle
 import estimator.kissteam.com.estimatorclient.view.TaskItemView
 
 /**
  * Created by AntonShevchuk on 16.03.2018.
  */
 
-class TaskListRecyclerViewAdapter(val myDataset: MutableList<IssueInformation>) :
+class TaskListRecyclerViewAdapter(val myDataset: MutableList<IssueRequestBundle>) :
 		RecyclerView.Adapter<TaskListRecyclerViewAdapter.ViewHolder>() {
 
 	class ViewHolder(val taskItemView: TaskItemView) : RecyclerView.ViewHolder(taskItemView)
@@ -26,7 +26,7 @@ class TaskListRecyclerViewAdapter(val myDataset: MutableList<IssueInformation>) 
 
 	override fun getItemCount() = myDataset.size
 
-	fun addIssue(issue: IssueInformation) {
+	fun addIssue(issue: IssueRequestBundle) {
 		myDataset.add(issue)
 	}
 }

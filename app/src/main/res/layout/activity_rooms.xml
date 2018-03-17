@@ -4,20 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="estimator.kissteam.com.estimatorclient.LoginActivity">
+    tools:context="estimator.kissteam.com.estimatorclient.RoomsActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"/>
+        android:text="Rooms"
+        android:id="@+id/textView"/>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnCreateRoom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="220dp"
-        android:text="Button"/>
+        android:text="Create new one"/>
+
+    <Button
+        android:id="@+id/btnEstimation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="106dp"
+        android:text="Open Estimation screen"/>
 
 </RelativeLayout>

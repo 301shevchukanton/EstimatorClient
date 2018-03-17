@@ -4,7 +4,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioButton
-import estimator.kissteam.com.estimatorclient.dal.entities.EstimationStrategy
+import estimator.kissteam.com.estimatorclient.dal.entities.Strategy
 import estimator.kissteam.com.estimatorclient.view.EstimationStrategyItemView
 
 
@@ -13,7 +13,7 @@ import estimator.kissteam.com.estimatorclient.view.EstimationStrategyItemView
  */
 
 class EstimationStrategiesRecyclerViewAdapter(
-		val myDataset: MutableList<Pair<EstimationStrategy, Boolean>>) :
+		val myDataset: MutableList<Pair<Strategy, Boolean>>) :
 		RecyclerView.Adapter<EstimationStrategiesRecyclerViewAdapter.ViewHolder>() {
 
 

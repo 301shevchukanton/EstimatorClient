@@ -6,11 +6,11 @@
 	android:layout_height="match_parent"
 	tools:context="estimator.kissteam.com.estimatorclient.RoomsActivity">
 
-	<TextView
-		android:id="@+id/textView"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:text="Rooms"/>
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rooms"
+        android:id="@+id/recyclerRooms"/>
 
 	<Button
 		android:id="@+id/btnCreateRoom"

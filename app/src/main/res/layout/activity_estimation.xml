@@ -7,22 +7,19 @@
     tools:context="estimator.kissteam.com.estimatorclient.EstimationActivity">
 
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="73dp"
-        android:text="Pager will be here"
-        android:textSize="20sp"/>
+   <android.support.v4.view.ViewPager
+       android:id="@+id/vpEstimationViewPager"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content">
+
+   </android.support.v4.view.ViewPager>
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/textView2"
+        android:layout_alignStart="@+id/vpEstimationViewPager"
         android:layout_marginBottom="128dp"
         android:text="Poker cards will be here"
         android:textSize="20sp"/>

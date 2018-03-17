@@ -1,5 +1,7 @@
 package estimator.kissteam.com.estimatorclient.dal.entities
 
+import java.io.Serializable
+
 
 /**
  * Created by Dima Muravyov on 16.03.2018.
@@ -10,4 +12,4 @@ class Room(val id: String,
 		   val strategyId: String,
 		   val authorId: String,
 		   val creationDate: String,
-		   val modificationDate: String)
+		   val modificationDate: String) : Serializable

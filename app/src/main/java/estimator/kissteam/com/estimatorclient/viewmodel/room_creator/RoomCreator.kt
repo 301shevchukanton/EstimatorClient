@@ -32,14 +32,14 @@ class RoomCreator(private val createRoomBundle: CreateRoomBundle) {
 	}
 
 	private fun createNotNullCreateRoomBundle(): NotNullCreateRoomBundle? {
-		return if (createRoomBundle.description != null
-				&& createRoomBundle.estimationStrategy != null
+		return if (/*createRoomBundle.description != null
+				&& */createRoomBundle.estimationStrategy != null
 				&& createRoomBundle.name != null
 				&& createRoomBundle.issueList != null
 				&& createRoomBundle.users != null) {
 			NotNullCreateRoomBundle(
 					createRoomBundle.name,
-					createRoomBundle.description,
+					createRoomBundle.name,
 					createRoomBundle.issueList,
 					createRoomBundle.estimationStrategy,
 					createRoomBundle.users)

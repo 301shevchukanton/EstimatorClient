@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import estimator.kissteam.com.estimatorclient.R;
 
@@ -44,9 +45,17 @@ public class AddTaskDialogView extends LinearLayout {
 		findViewById(R.id.btnAddTask).setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				liveData.setValue(new Pair<String, String>(
-						taskNameText.getText().toString(),
-						taskDescriptionText.getText().toString()));
+				String name = taskNameText.getText().toString();
+				String description = taskDescriptionText.getText().toString();
+				if (name.isEmpty() || description.isEmpty()) {
+					Toast
+							.makeText(getContext(), "Fields can not be empty", Toast.LENGTH_LONG)
+							.show();
+				} else {
+					liveData.setValue(new Pair<String, String>(
+							name,
+							description));
+				}
 			}
 		});
 	}

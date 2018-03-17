@@ -16,59 +16,57 @@ import java.util.concurrent.TimeUnit
  */
 class RetrofitFactory constructor(private val baseUrl: String = "http://159.89.7.3/api/") {
 
-    companion object {
-        private const val MAX_REQUESTS_PER_HOST = 5
-        private const val CONNECT_TIMEOUT = 20L
+	companion object {
+		private const val MAX_REQUESTS_PER_HOST = 5
+		private const val CONNECT_TIMEOUT = 20L
 
-        inline fun <reified Service> createService() : Service =
-                RetrofitFactory()
-                        .create()
-                        .create(Service::class.java)
+		inline fun <reified Service> createService(): Service =
+				RetrofitFactory()
+						.create()
+						.create(Service::class.java)
 
-        inline fun <reified Service> createServiceForAuth() : Service =
-                RetrofitFactory()
-                        .createForAuth()
-                        .create(Service::class.java)
-    }
+		inline fun <reified Service> createServiceForAuth(): Service =
+				RetrofitFactory()
+						.createForAuth()
+						.create(Service::class.java)
+	}
 
-    fun create(tokenProvider: AccessTokenProvider = AccessTokenProviderImpl()): Retrofit {
-        val interceptor = HttpLoggingInterceptor()
-                .setLevel(HttpLoggingInterceptor.Level.HEADERS)
-        //logging level 'BODY' breaking streaming gateways
+	fun create(tokenProvider: AccessTokenProvider = AccessTokenProviderImpl()): Retrofit {
+		val interceptor = HttpLoggingInterceptor()
+				.setLevel(HttpLoggingInterceptor.Level.BODY)
 
-        val client = OkHttpClient.Builder()
-                .connectTimeout(CONNECT_TIMEOUT, TimeUnit.SECONDS)
-                .addNetworkInterceptor(interceptor)
-                .addInterceptor(AuthInterceptor(tokenProvider.provide()))
-                .addInterceptor(HeadersInterceptor())
-                .authenticator(Authenticator(tokenProvider.provide()))
-                .build()
+		val client = OkHttpClient.Builder()
+				.connectTimeout(CONNECT_TIMEOUT, TimeUnit.SECONDS)
+				.addNetworkInterceptor(interceptor)
+				.addInterceptor(AuthInterceptor(tokenProvider.provide()))
+				.addInterceptor(HeadersInterceptor())
+				.build()
 
-        client.dispatcher().maxRequestsPerHost = MAX_REQUESTS_PER_HOST
+		client.dispatcher().maxRequestsPerHost = MAX_REQUESTS_PER_HOST
 
-        return Retrofit.Builder()
-                .baseUrl("${this.baseUrl}/")
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(client)
-                .build()
-    }
+		return Retrofit.Builder()
+				.baseUrl(this.baseUrl)
+				.addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+				.addConverterFactory(GsonConverterFactory.create())
+				.client(client)
+				.build()
+	}
 
-    fun createForAuth(): Retrofit {
-        val interceptor = HttpLoggingInterceptor()
-                .setLevel(HttpLoggingInterceptor.Level.BODY)
+	fun createForAuth(): Retrofit {
+		val interceptor = HttpLoggingInterceptor()
+				.setLevel(HttpLoggingInterceptor.Level.BODY)
 
-        val client = OkHttpClient.Builder()
-                .addNetworkInterceptor(interceptor)
-                .addInterceptor(HeadersInterceptor())
-                .connectTimeout(CONNECT_TIMEOUT, TimeUnit.SECONDS)
-                .build()
+		val client = OkHttpClient.Builder()
+				.addNetworkInterceptor(interceptor)
+				.addInterceptor(HeadersInterceptor())
+				.connectTimeout(CONNECT_TIMEOUT, TimeUnit.SECONDS)
+				.build()
 
-        return Retrofit.Builder()
-                .baseUrl(baseUrl)
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(client)
-                .build()
-    }
+		return Retrofit.Builder()
+				.baseUrl(baseUrl)
+				.addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+				.addConverterFactory(GsonConverterFactory.create())
+				.client(client)
+				.build()
+	}
 }

@@ -21,7 +21,6 @@ class RegisterActivity : AppCompatActivity() {
     companion object {
         fun createIntent(context: Context) =
                 Intent(context, RegisterActivity::class.java)
-                        .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

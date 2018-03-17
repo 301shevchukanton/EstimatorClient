@@ -17,6 +17,11 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        if (!OauthRepository().getAccessToken().isEmpty()) {
+            openRoomsActivity()
+            finish()
+        }
+
         //TODO: Extract to ViewModel
         findViewById<Button>(R.id.btnLogin).setOnClickListener({
 
@@ -28,6 +33,7 @@ class LoginActivity : AppCompatActivity() {
                     if (gatewayResult.result != null && gatewayResult.error == null) {
                         OauthRepository().saveAccessToken(gatewayResult.result.accessToken)
                         openRoomsActivity()
+                        finish()
                     } else if (gatewayResult.error != null) {
                         showToast(gatewayResult.error.localizedMessage)
                     } else {

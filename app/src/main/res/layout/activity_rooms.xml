@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="estimator.kissteam.com.estimatorclient.RoomsActivity">
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	tools:context="estimator.kissteam.com.estimatorclient.RoomsActivity">
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="wrap_content"
@@ -12,22 +12,22 @@
         android:text="Rooms"
         android:id="@+id/recyclerRooms"/>
 
-    <Button
-        android:id="@+id/btnCreateRoom"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="220dp"
-        android:text="Create new one"/>
+	<Button
+		android:id="@+id/btnCreateRoom"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_alignParentBottom="true"
+		android:layout_centerHorizontal="true"
+		android:layout_marginBottom="220dp"
+		android:text="Create new one"/>
 
-    <Button
-        android:id="@+id/btnEstimation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="106dp"
-        android:text="Open Estimation screen"/>
+	<Button
+		android:id="@+id/btnEstimation"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_alignParentBottom="true"
+		android:layout_centerHorizontal="true"
+		android:layout_marginBottom="106dp"
+		android:text="Open Estimation screen"/>
 
 </RelativeLayout>

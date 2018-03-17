@@ -41,6 +41,9 @@ class RoomsActivity : AppCompatActivity() {
 		btnEstimation.setOnClickListener({
 			startActivity(EstimationActivity.createIntent(this))
 		})
+		btnCreateRoom.setOnClickListener {
+			startActivity(Intent(this, CreateRoomActivity::class.java))
+		}
 		getRoomsViewModel()
 				.liveData
 				.observe(this, Observer {

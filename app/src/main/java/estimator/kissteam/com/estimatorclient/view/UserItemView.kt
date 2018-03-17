@@ -3,10 +3,7 @@ package estimator.kissteam.com.estimatorclient.view
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
-import android.widget.CheckBox
 import android.widget.LinearLayout
-import android.widget.TextView
-
 import estimator.kissteam.com.estimatorclient.R
 import estimator.kissteam.com.estimatorclient.dal.entities.User
 import kotlinx.android.synthetic.main.view_user_item.view.*
@@ -23,7 +20,7 @@ class UserItemView @JvmOverloads constructor(context: Context, attrs: AttributeS
 		inflater.inflate(R.layout.view_user_item, this, true)
 	}
 
-	fun setUser(user: User, checked : Boolean = false) {
+	fun setUser(user: User, checked: Boolean = false) {
 		tvUsername.text = user.email
 		cbIncluded.isChecked = checked
 	}

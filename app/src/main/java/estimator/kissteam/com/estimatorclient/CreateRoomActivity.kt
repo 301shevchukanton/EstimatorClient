@@ -1,5 +1,6 @@
 package estimator.kissteam.com.estimatorclient
 
+import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -7,6 +8,7 @@ import android.view.KeyEvent
 import android.view.View
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
+import android.widget.Toast
 import estimator.kissteam.com.estimatorclient.view.*
 import estimator.kissteam.com.estimatorclient.viewmodel.CreateRoomBundle
 import estimator.kissteam.com.estimatorclient.viewmodel.CreateRoomViewModel
@@ -36,6 +38,17 @@ class CreateRoomActivity : AppCompatActivity() {
 			getRoomViewModel().createRoomBundle = currentCreateRoomBundle
 			trySwitchToTheNextView(viewList!!)
 		}
+		getRoomViewModel()
+				.roomCreated
+				.observe(this, Observer {
+					Toast.makeText(this, "Room crated", Toast.LENGTH_SHORT).show()
+					finish()
+				})
+		getRoomViewModel()
+				.roomCreationError
+				.observe(this, Observer { error ->
+					Toast.makeText(this, "Room creation error.\nCause: ${error?.message}", Toast.LENGTH_SHORT).show()
+				})
 	}
 
 	override fun onDestroy() {
@@ -44,7 +57,7 @@ class CreateRoomActivity : AppCompatActivity() {
 	}
 
 	private fun updateViewModelStateByViewsStates(viewList: List<View>?) {
-		var currentCreateRoomBundle : CreateRoomBundle = getRoomViewModel().createRoomBundle ?: CreateRoomBundle()
+		var currentCreateRoomBundle: CreateRoomBundle = getRoomViewModel().createRoomBundle ?: CreateRoomBundle()
 		viewList
 				?.map { it as? CreateRoomAwareView }
 				?.forEach {
